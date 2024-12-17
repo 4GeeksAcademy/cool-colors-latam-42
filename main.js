@@ -25,23 +25,37 @@ colorTextElement.textContent = newColor;
 
 let colorContainer = document.querySelector("#colors-container");
 
-const ColorCard = (color) => `
-    <div class="col-4 p-2">
-        <div class="card" style="background-color: ${color};">
-          <div class="card-body">
-            <h5 class="card-title">${color}</h5>
-          </div>
-        </div>
-    </div>
-`;
+// solo DOM elements
+const ColorCardElement = (color) => {
+    const divElement = document.createElement("div");
+    divElement.classList = "col-4 p-2";
+    const cardElement = document.createElement("div");
+    cardElement.classList = "card";
+    cardElement.style.backgroundColor = color;
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+    const h5element = document.createElement("h5");
+
+    h5element.classList.add("card-title");
+    h5element.innerText = color;
+    
+
+    console.log(cardBody, cardElement, divElement)
+
+    cardBody.appendChild(h5element);
+    cardElement.appendChild(cardBody);
+    divElement.appendChild(cardElement);
+
+    console.log(divElement);
+
+    return divElement;
+}
 
 const generateColorButton = document.querySelector("#generate-color");
 
-const colorList = [];
-
 generateColorButton.addEventListener("click", function(){
-    const newCard = ColorCard(generateRandomColor())
-    colorList.push(newCard);
-    colorContainer.innerHTML = colorList.join(" ")
+    const newColor = generateRandomColor();
+    const newCard = ColorCardElement(newColor);
+    colorContainer.appendChild(newCard);
 })
 
