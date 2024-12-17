@@ -22,3 +22,26 @@ bodyElement.style.backgroundColor = newColor;
 
 let colorTextElement = document.querySelector("#color-text");
 colorTextElement.textContent = newColor;
+
+let colorContainer = document.querySelector("#colors-container");
+
+const ColorCard = (color) => `
+    <div class="col-4 p-2">
+        <div class="card" style="background-color: ${color};">
+          <div class="card-body">
+            <h5 class="card-title">${color}</h5>
+          </div>
+        </div>
+    </div>
+`;
+
+const generateColorButton = document.querySelector("#generate-color");
+
+const colorList = [];
+
+generateColorButton.addEventListener("click", function(){
+    const newCard = ColorCard(generateRandomColor())
+    colorList.push(newCard);
+    colorContainer.innerHTML = colorList.join(" ")
+})
+
