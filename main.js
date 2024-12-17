@@ -53,9 +53,19 @@ const ColorCardElement = (color) => {
 
 const generateColorButton = document.querySelector("#generate-color");
 
-generateColorButton.addEventListener("click", function(){
+generateColorButton.addEventListener("click", () => {
     const newColor = generateRandomColor();
     const newCard = ColorCardElement(newColor);
     colorContainer.appendChild(newCard);
 })
 
+
+const colorInput = document.querySelector("#color-input");
+const colorTestContainer = document.querySelector("#color-test-container");
+const colorTestTitle = document.querySelector("#color-test-title");
+
+colorInput.addEventListener("change", (evento) => {
+    const inputText = evento.target.value;
+    colorTestContainer.style.backgroundColor = inputText;
+    colorTestTitle.innerText = inputText;
+})  
